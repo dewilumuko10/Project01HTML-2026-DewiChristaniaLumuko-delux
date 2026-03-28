@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact - Get in touch with Dewi Christania Lumuko">
+    <meta name="author" content="Dewi Christania Lumuko">
+    <title>Contact — delux.</title>
+
+    <style>
+        /* ============================================
+           RESET & BASE
+        ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF0F5;
+            color: #4A4A4A;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ============================================
+           NAVBAR
+        ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 240, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid #FFE4E1;
+        }
+
+        .navbar .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #FF69B4;
+            letter-spacing: 1px;
+        }
+
+        .navbar .logo span {
+            color: #4A4A4A;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #4A4A4A;
+            padding: 8px 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #FF69B4;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background-color: #FF69B4;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .page-header {
+            padding: 140px 50px 50px;
+            text-align: center;
+            background-color: #FFF0F5;
+        }
+
+        .page-header-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #FF69B4;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #888888;
+            font-style: italic;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .page-divider {
+            width: 80px;
+            height: 4px;
+            background-color: #FF69B4;
+            border: none;
+            border-radius: 10px;
+            margin: 25px auto 0;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+        ============================================ */
+        .contact-section {
+            flex: 1;
+            padding: 60px 50px 80px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .contact-container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        /* ============================================
+           INTRO BOX
+        ============================================ */
+        .intro-box {
+            background-color: #FFFFFF;
+            border: 2px solid #FFE4E1;
+            border-radius: 20px;
+            padding: 35px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.08);
+        }
+
+        .intro-box p {
+            font-size: 1.08rem;
+            color: #4A4A4A;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           CONTACT CARDS
+        ============================================ */
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* -- Seluruh card adalah link yang bisa diklik -- */
+        .contact-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 20px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .contact-card-link:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 45px rgba(255, 105, 180, 0.2);
+        }
+
+        .contact-card {
+            background-color: #FFE4E1;
+            border-radius: 20px;
+            padding: 35px 40px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.08);
+        }
+
+        /* -- Icon Circle -- */
+        .contact-card .icon-circle {
+            width: 70px;
+            height: 70px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 105, 180, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card-link:hover .icon-circle {
+            transform: scale(1.1);
+        }
+
+        /* -- Card Text -- */
+        .contact-card .card-info {
+            flex: 1;
+        }
+
+        .contact-card .card-info h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #FF69B4;
+            margin-bottom: 4px;
+        }
+
+        .contact-card .card-info p {
+            font-size: 1rem;
+            color: #4A4A4A;
+            margin-bottom: 0;
+        }
+
+        /* -- Arrow Hint -- */
+        .contact-card .arrow-hint {
+            font-size: 1.5rem;
+            color: #FF69B4;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card-link:hover .arrow-hint {
+            transform: translateX(6px);
+        }
+
+        /* ============================================
+           CLOSING MESSAGE
+        ============================================ */
+        .closing-message {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px;
+        }
+
+        .closing-message .closing-emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .closing-message p {
+            font-size: 1.05rem;
+            color: #888888;
+            font-style: italic;
+            max-width: 450px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .closing-divider {
+            width: 40px;
+            height: 3px;
+            background-color: #FF69B4;
+            border: none;
+            border-radius: 10px;
+            margin: 20px auto 0;
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .footer {
+            padding: 30px 50px;
+            background-color: #FFE4E1;
+            text-align: center;
+            border-top: 2px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .footer p {
+            color: #4A4A4A;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #FF69B4;
+            font-weight: 700;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .footer-heart {
+            color: #FF69B4;
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .page-header {
+                padding: 130px 20px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-section {
+                padding: 40px 20px 60px;
+            }
+
+            .intro-box {
+                padding: 28px 25px;
+            }
+
+            .intro-box p {
+                font-size: 1rem;
+            }
+
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 25px;
+                gap: 18px;
+            }
+
+            .contact-card .icon-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .contact-card .card-info h3 {
+                font-size: 1.05rem;
+            }
+
+            .contact-card .card-info p {
+                font-size: 0.95rem;
+            }
+
+            .contact-card .arrow-hint {
+                display: none;
+            }
+
+            .closing-message p {
+                font-size: 0.95rem;
+            }
+
+            .footer {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVIGATION BAR
+    ============================================ -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            delux<span>.</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- ============================================
+         PAGE HEADER
+    ============================================ -->
+    <header class="page-header">
+        <span class="page-header-emoji"></span>
+        <h1>Contact Me</h1>
+        <p>&ldquo;I&rsquo;d love to hear from you&rdquo; </p>
+        <hr class="page-divider">
+    </header>
+
+
+    <!-- ============================================
+         CONTACT SECTION
+    ============================================ -->
+    <main class="contact-section">
+        <div class="contact-container">
+
+            <!-- ======= INTRO BOX ======= -->
+            <div class="intro-box">
+                <p>
+                    Hello! If you would like to know more about me
+                    or just want to connect, you can reach me
+                    through the platforms below 🌷💕
+                </p>
+            </div>
+
+
+            <!-- ======= CONTACT CARDS ======= -->
+            <div class="contact-cards">
+
+                <!--
+                    =====================
+                    EMAIL
+                    =====================
+                -->
+                <a href="mailto:dewilumuko026@student.unsrat.ac.id"
+                   class="contact-card-link"
+                   aria-label="Send email">
+                    <div class="contact-card">
+                        <div class="icon-circle">📧</div>
+                        <div class="card-info">
+                            <h3>Email</h3>
+                            <p>dewilumuko026@student.unsrat.ac.id</p>
+                        </div>
+                        <span class="arrow-hint">→</span>
+                    </div>
+                </a>
+
+                <!--
+                    =====================
+                    INSTAGRAM
+                    =====================
+                -->
+                <a href="https://www.instagram.com/dchristniaa/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="contact-card-link"
+                   aria-label="Open Instagram profile">
+                    <div class="contact-card">
+                        <div class="icon-circle">📸</div>
+                        <div class="card-info">
+                            <h3>Instagram</h3>
+                            <p>@dchristniaa</p>
+                        </div>
+                        <span class="arrow-hint">→</span>
+                    </div>
+                </a>
+
+                <!--
+                    =====================
+                    FACEBOOK
+                    =====================
+                    Di HP → langsung buka app Facebook
+                    Di PC → buka facebook.com di browser
+
+                    GANTI link di bawah dengan profil asli kamu:
+                    https://www.facebook.com/USERNAME.KAMU
+                -->
+                <a href="https://www.facebook.com/Dewi Christania Lumuko"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="contact-card-link"
+                   aria-label="Open Facebook profile">
+                    <div class="contact-card">
+                        <div class="icon-circle">👍</div>
+                        <div class="card-info">
+                            <h3>Facebook</h3>
+                            <p>Dewi Christania Lumuko</p>
+                        </div>
+                        <span class="arrow-hint">→</span>
+                    </div>
+                </a>
+
+            </div>
+
+
+            <!-- ======= CLOSING MESSAGE ======= -->
+            <div class="closing-message">
+                <span class="closing-emoji">🌸</span>
+                <p>
+                    Thank you for visiting my website!
+                    Feel free to reach out anytime &mdash;
+                    I&rsquo;m always happy to connect with new people 💖
+                </p>
+                <hr class="closing-divider">
+            </div>
+
+        </div>
+    </main>
+
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    <footer class="footer">
+        <p>
+            &copy; 2026
+            <a href="index.html">delux.</a>
+            &mdash; Made with
+            <span class="footer-heart">♥</span>
+            by Dewi Christania Lumuko
+        </p>
+    </footer>
+
+</body>
+</html>

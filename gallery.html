@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gallery - Visual stories of my life">
+    <meta name="author" content="Dewi Christania Lumuko">
+    <title>Gallery — delux.</title>
+
+    <style>
+        /* ============================================
+           RESET & BASE
+        ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF0F5;
+            color: #4A4A4A;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ============================================
+           NAVBAR
+        ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 240, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid #FFE4E1;
+        }
+
+        .navbar .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #FF69B4;
+            letter-spacing: 1px;
+        }
+
+        .navbar .logo span {
+            color: #4A4A4A;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #4A4A4A;
+            padding: 8px 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #FF69B4;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background-color: #FF69B4;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .page-header {
+            padding: 140px 50px 60px;
+            text-align: center;
+            background-color: #FFF0F5;
+        }
+
+        .page-header .header-symbol {
+            font-size: 2rem;
+            color: #FF69B4;
+            display: block;
+            margin-bottom: 15px;
+            letter-spacing: 8px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #FF69B4;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #888888;
+            font-style: italic;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .page-divider {
+            width: 80px;
+            height: 4px;
+            background-color: #FF69B4;
+            border: none;
+            border-radius: 10px;
+            margin: 25px auto 0;
+        }
+
+        /* ============================================
+           SECTION QUICK NAV
+        ============================================ */
+        .section-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 30px 20px;
+            background-color: #FFFFFF;
+            flex-wrap: wrap;
+        }
+
+        .section-nav a {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #FFF0F5;
+            border: 2px solid #FFE4E1;
+            border-radius: 25px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #FF69B4;
+            transition: all 0.3s ease;
+        }
+
+        .section-nav a:hover {
+            background-color: #FF69B4;
+            color: #FFFFFF;
+            border-color: #FF69B4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        /* ============================================
+           TICKER
+        ============================================ */
+        .ticker-section {
+            padding: 18px 0;
+            background-color: #FF69B4;
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker-scroll 25s linear infinite;
+        }
+
+        .ticker-track span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            white-space: nowrap;
+            padding: 0 35px;
+            letter-spacing: 1.5px;
+        }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ============================================
+           GALLERY SECTIONS — COMMON
+        ============================================ */
+        .gallery-section {
+            padding: 80px 50px;
+        }
+
+        .bg-blush {
+            background-color: #FFF0F5;
+        }
+
+        .bg-rose {
+            background-color: #FFE4E1;
+        }
+
+        .bg-white {
+            background-color: #FFFFFF;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #FF69B4;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: #888888;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .section-count {
+            display: inline-block;
+            padding: 5px 18px;
+            background-color: #FF69B4;
+            color: #FFFFFF;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background-color: #FF69B4;
+            border: none;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           PHOTO GRID — 4 COLUMNS
+        ============================================ */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           PHOTO CARD
+        ============================================ */
+        .photo-card {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #FFE4E1;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
+        }
+
+        .photo-card .photo-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .photo-card .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover .photo-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .photo-card .photo-caption {
+            padding: 14px 18px;
+            text-align: center;
+        }
+
+        .photo-card .photo-caption p {
+            font-size: 0.9rem;
+            color: #4A4A4A;
+            font-style: italic;
+        }
+
+        .photo-card.wide {
+            grid-column: span 2;
+        }
+
+        .photo-card.wide .photo-wrapper {
+            height: 280px;
+        }
+
+        .photo-card.rose-card {
+            background-color: #FFF0F5;
+            border-color: rgba(255, 105, 180, 0.25);
+        }
+
+        /* ============================================
+           POLAROID GRID — 3 COLUMNS
+        ============================================ */
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        .polaroid {
+            background-color: #FFFFFF;
+            padding: 12px 12px 40px;
+            border-radius: 4px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .polaroid:nth-child(1)  { transform: rotate(-2deg); }
+        .polaroid:nth-child(2)  { transform: rotate(1.5deg); }
+        .polaroid:nth-child(3)  { transform: rotate(-1deg); }
+        .polaroid:nth-child(4)  { transform: rotate(3deg); }
+        .polaroid:nth-child(5)  { transform: rotate(-2.5deg); }
+        .polaroid:nth-child(6)  { transform: rotate(1deg); }
+        .polaroid:nth-child(7)  { transform: rotate(-3deg); }
+        .polaroid:nth-child(8)  { transform: rotate(2deg); }
+        .polaroid:nth-child(9)  { transform: rotate(-1.5deg); }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.06);
+            box-shadow: 0 14px 45px rgba(255, 105, 180, 0.3);
+        }
+
+        .polaroid .polaroid-img {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .polaroid .polaroid-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .polaroid.horizontal .polaroid-img {
+            height: 200px;
+        }
+
+        /* ============================================
+           LIGHTBOX
+        ============================================ */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(255, 105, 180, 0.25);
+            animation: lightbox-zoom 0.3s ease;
+        }
+
+        @keyframes lightbox-zoom {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 25px;
+            right: 35px;
+            font-size: 2.8rem;
+            color: #FFFFFF;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: #FF69B4;
+            transform: rotate(90deg);
+        }
+
+        .lightbox-caption {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #FFFFFF;
+            font-size: 1rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 600px;
+            padding: 10px 25px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            z-index: 10000;
+        }
+
+        .lightbox-counter {
+            position: fixed;
+            top: 30px;
+            left: 35px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10000;
+            letter-spacing: 1px;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            cursor: pointer;
+            z-index: 10000;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 105, 180, 0.4);
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        /* ============================================
+           CLOSING SECTION
+        ============================================ */
+        .closing-section {
+            padding: 70px 50px;
+            text-align: center;
+            background-color: #FFF0F5;
+        }
+
+        .closing-section .closing-symbol {
+            font-size: 1.5rem;
+            color: #FF69B4;
+            display: block;
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+        }
+
+        .closing-section p {
+            font-size: 1.05rem;
+            color: #888888;
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .closing-section .closing-divider {
+            width: 40px;
+            height: 3px;
+            background-color: #FF69B4;
+            border: none;
+            border-radius: 10px;
+            margin: 25px auto 0;
+        }
+
+        /* ============================================
+           SCROLL TO TOP
+        ============================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background-color: #FF69B4;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 900;
+            box-shadow: 0 4px 20px rgba(255, 105, 180, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);
+        }
+
+        .scroll-top.visible {
+            display: flex;
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .footer {
+            padding: 30px 50px;
+            background-color: #FFE4E1;
+            text-align: center;
+            border-top: 2px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .footer p {
+            color: #4A4A4A;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #FF69B4;
+            font-weight: 700;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .footer-heart {
+            color: #FF69B4;
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 1024px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photo-card.wide {
+                grid-column: span 2;
+            }
+
+            .polaroid-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links { gap: 18px; }
+
+            .page-header {
+                padding: 130px 20px 40px;
+            }
+
+            .page-header h1 { font-size: 2rem; }
+
+            .section-nav {
+                gap: 10px;
+                padding: 20px 15px;
+            }
+
+            .section-nav a {
+                padding: 8px 18px;
+                font-size: 0.8rem;
+            }
+
+            .gallery-section { padding: 60px 20px; }
+            .section-title { font-size: 1.6rem; }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .photo-card.wide { grid-column: span 1; }
+            .photo-card .photo-wrapper { height: 220px; }
+            .photo-card.wide .photo-wrapper { height: 220px; }
+
+            .polaroid-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                max-width: 320px;
+            }
+
+            .polaroid .polaroid-img { height: 250px; }
+            .polaroid.horizontal .polaroid-img { height: 200px; }
+
+            .lightbox-nav { width: 40px; height: 40px; font-size: 1.8rem; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+            .lightbox-close { top: 15px; right: 20px; font-size: 2.2rem; }
+            .lightbox-caption { bottom: 15px; font-size: 0.85rem; padding: 8px 18px; }
+
+            .closing-section { padding: 50px 20px; }
+            .footer { padding: 25px 20px; }
+
+            .scroll-top { bottom: 20px; right: 20px; width: 42px; height: 42px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVIGATION BAR
+    ============================================ -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">delux<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- ============================================
+         PAGE HEADER
+    ============================================ -->
+    <header class="page-header">
+        <span class="header-symbol">&#10045; &#10047; &#10045;</span>
+        <h1>My Gallery</h1>
+        <p>&#10077; A visual story of my life, my people, and my journey &#10078;</p>
+        <hr class="page-divider">
+    </header>
+
+
+    <!-- ============================================
+         SECTION QUICK NAV
+    ============================================ -->
+    <nav class="section-nav">
+        <a href="#about-me">&#10045; About Me</a>
+        <a href="#my-family">&#9829; My Family</a>
+        <a href="#academic-life">&#10022; Academic Life</a>
+        <a href="#with-friends">&#10023; With Friends</a>
+    </nav>
+
+
+    <!-- ============================================
+         TICKER
+    ============================================ -->
+    <div class="ticker-section">
+        <div class="ticker-track">
+            <span>&#10043; captured moments</span>
+            <span>&#9829; family love</span>
+            <span>&#10022; campus life</span>
+            <span>&#10048; friendship goals</span>
+            <span>&#10045; simple joys</span>
+            <span>&#10047; beautiful memories</span>
+            <span>&#10023; visual stories</span>
+            <span>&#9753; everyday magic</span>
+            <span>&#10043; captured moments</span>
+            <span>&#9829; family love</span>
+            <span>&#10022; campus life</span>
+            <span>&#10048; friendship goals</span>
+            <span>&#10045; simple joys</span>
+            <span>&#10047; beautiful memories</span>
+            <span>&#10023; visual stories</span>
+            <span>&#9753; everyday magic</span>
+        </div>
+    </div>
+
+
+    <!-- ============================================
+         SECTION 1 — ABOUT ME (10 Photos)
+    ============================================ -->
+    <section class="gallery-section bg-white" id="about-me">
+        <div class="section-header">
+            <h2 class="section-title">&#10045; About Me</h2>
+            <p class="section-subtitle">Just me, my world, and little things I love</p>
+            <hr class="section-divider">
+        </div>
+
+        <div class="photo-grid">
+
+            <figure class="photo-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 1 wide.jpeg"
+                         alt="Foto diri 1" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>just me being myself &#9829;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 2.jpeg"
+                         alt="Foto diri 2" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>simple moments, happy heart &#10047;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 3.jpeg"
+                         alt="Foto diri 3" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>enjoying every little detail &#10022;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 4.jpeg"
+                         alt="Foto diri 4" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>living in the moment &#10048;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 5.jpeg"
+                         alt="Foto diri 5" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>my favorite kind of day &#10045;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 6 wide.jpeg"
+                         alt="Foto diri 6" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>smiling through the chaos &#10023;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 7.jpeg"
+                         alt="Foto diri 7" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>love me &#9829;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 8.jpeg"
+                         alt="Foto diri 8" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>sunshine on my face &#10022;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 9.jpeg"
+                         alt="Foto diri 9" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>being unapologetically me &#10047;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/me 10.jpeg"
+                         alt="Foto diri 10" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>this is my story &#10048;</p>
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SECTION 2 — MY FAMILY (8 Photos)
+    ============================================ -->
+    <section class="gallery-section bg-rose" id="my-family">
+        <div class="section-header">
+            <h2 class="section-title">&#9829; My Family</h2>
+            <p class="section-subtitle">My home, my heart, my everything</p>
+            <hr class="section-divider">
+        </div>
+
+        <div class="photo-grid">
+
+            <figure class="photo-card rose-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 1.jpeg"
+                         alt="Foto keluarga 1" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>my home, my everything &#9829;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card rose-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 2.jpeg"
+                         alt="Foto keluarga 2" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>blessed with this family &#10047;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card rose-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 3.jpeg"
+                         alt="Foto keluarga 3" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>forever grateful for them &#10048;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card rose-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 4.jpeg"
+                         alt="Foto keluarga 4" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>where love never ends &#10045;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card rose-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 5.jpeg"
+                         alt="Foto keluarga 5" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>my strongest support system &#9829;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card rose-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 6.jpeg"
+                         alt="Foto keluarga 6" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>my little fur babies &#10047;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card rose-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 7.jpeg"
+                         alt="Foto keluarga 7" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>making memories together &#10022;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card rose-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/fam 8.jpeg"
+                         alt="Foto keluarga 8" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>love that feels like home &#10045;</p>
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SECTION 3 — ACADEMIC LIFE (5 Photos)
+    ============================================ -->
+    <section class="gallery-section bg-white" id="academic-life">
+        <div class="section-header">
+            <h2 class="section-title">&#10022; Academic Life</h2>
+            <p class="section-subtitle">My journey as an Informatics Engineering student</p>
+            <hr class="section-divider">
+        </div>
+
+        <div class="photo-grid">
+
+            <figure class="photo-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/aca 1.jpeg"
+                         alt="Foto akademik 1" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>learning step by step &#10022;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/aca 2.jpeg"
+                         alt="Foto akademik 2" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>my journey as a student &#10045;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card wide">
+                <div class="photo-wrapper">
+                    <img src="assets/images/aca 3.jpeg"
+                         alt="Foto akademik 3" width="600" height="280" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>TBD w/asdos-asdos &#10047;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/aca 4.jpeg"
+                         alt="Foto akademik 4" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>growing every single day &#10048;</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="assets/images/aca 5.jpeg"
+                         alt="Foto akademik 5" width="400" height="300" loading="lazy">
+                </div>
+                <figcaption class="photo-caption">
+                    <p>campus life is beautiful &#10023;</p>
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SECTION 4 — WITH FRIENDS (Polaroid)
+    ============================================ -->
+    <section class="gallery-section bg-rose" id="with-friends">
+        <div class="section-header">
+            <h2 class="section-title">&#10023; With Friends</h2>
+            <p class="section-subtitle">Random moments, priceless memories</p>
+            <hr class="section-divider">
+        </div>
+
+        <div class="polaroid-grid">
+
+            <div class="polaroid horizontal">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 1.jpeg"
+                         alt="Bersama teman 1" width="400" height="200" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid horizontal">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 2.jpeg"
+                         alt="Bersama teman 2" width="400" height="200" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid horizontal">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 3.JPG"
+                         alt="Bersama teman 3" width="400" height="200" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 4.jpeg"
+                         alt="Bersama teman 4" width="300" height="350" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 5.jpeg"
+                         alt="Bersama teman 5" width="300" height="350" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 6.jpeg"
+                         alt="Bersama teman 6" width="300" height="350" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 7.jpeg"
+                         alt="Bersama teman 7" width="300" height="350" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 8.jpeg"
+                         alt="Bersama teman 8" width="300" height="350" loading="lazy">
+                </div>
+            </div>
+
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/fri 9.jpeg"
+                         alt="Bersama teman 9" width="300" height="350" loading="lazy">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         CLOSING SECTION
+    ============================================ -->
+    <section class="closing-section">
+        <span class="closing-symbol">&#10045; &#10047; &#10048; &#10047; &#10045;</span>
+        <p>
+            Every photo tells a story, and every story
+            is a part of who I am &#9829;
+        </p>
+        <hr class="closing-divider">
+    </section>
+
+
+    <!-- ============================================
+         LIGHTBOX OVERLAY
+    ============================================ -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next">&#8250;</button>
+        <img src="" alt="Preview" id="lightbox-img">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+
+    <!-- ============================================
+         SCROLL TO TOP BUTTON
+    ============================================ -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        &#9650;
+    </button>
+
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    <footer class="footer">
+        <p>
+            &copy; 2026
+            <a href="index.html">delux.</a>
+            &mdash; Made with
+            <span class="footer-heart">&#9829;</span>
+            by Dewi Christania Lumuko
+        </p>
+    </footer>
+
+
+    <!-- ============================================
+         SCRIPTS (Vanilla JS)
+    ============================================ -->
+    <script>
+        /* === LIGHTBOX === */
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightbox-img');
+        var lightboxCaption = document.getElementById('lightbox-caption');
+        var lightboxCounter = document.getElementById('lightbox-counter');
+        var btnClose = document.getElementById('lightbox-close');
+        var btnPrev = document.getElementById('lightbox-prev');
+        var btnNext = document.getElementById('lightbox-next');
+
+        var allImages = [];
+        var currentIndex = 0;
+
+        var photoCards = document.querySelectorAll('.photo-card .photo-wrapper img');
+        for (var i = 0; i < photoCards.length; i++) {
+            var captionEl = photoCards[i].closest('.photo-card').querySelector('.photo-caption p');
+            allImages.push({
+                src: photoCards[i].src,
+                alt: photoCards[i].alt,
+                caption: captionEl ? captionEl.textContent : ''
+            });
+        }
+
+        var polaroids = document.querySelectorAll('.polaroid .polaroid-img img');
+        for (var j = 0; j < polaroids.length; j++) {
+            allImages.push({
+                src: polaroids[j].src,
+                alt: polaroids[j].alt,
+                caption: ''
+            });
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = allImages[index].src;
+            lightboxImg.alt = allImages[index].alt;
+            lightboxCounter.textContent = (index + 1) + ' / ' + allImages.length;
+
+            if (allImages[index].caption) {
+                lightboxCaption.textContent = allImages[index].caption;
+                lightboxCaption.style.display = 'block';
+            } else {
+                lightboxCaption.style.display = 'none';
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+            openLightbox(currentIndex);
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % allImages.length;
+            openLightbox(currentIndex);
+        }
+
+        var globalIndex = 0;
+        for (var a = 0; a < photoCards.length; a++) {
+            (function(idx) {
+                photoCards[idx].addEventListener('click', function() { openLightbox(idx); });
+            })(globalIndex);
+            globalIndex++;
+        }
+        for (var b = 0; b < polaroids.length; b++) {
+            (function(idx) {
+                polaroids[b].addEventListener('click', function() { openLightbox(idx); });
+            })(globalIndex);
+            globalIndex++;
+        }
+
+        btnClose.addEventListener('click', closeLightbox);
+        btnPrev.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
+        btnNext.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
+        lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') showPrev();
+            else if (e.key === 'ArrowRight') showNext();
+        });
+
+        /* === SCROLL TO TOP === */
+        var scrollBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
